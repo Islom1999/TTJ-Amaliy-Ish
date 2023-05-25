@@ -10,28 +10,16 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            Rasmi
+                                            Xona
                                         </th>
                                         <th>
-                                            Ism Familiyasi
+                                            Qavat
                                         </th>
                                         <th>
-                                            Kursi
+                                            Status
                                         </th>
                                         <th>
-                                            Fakulteti
-                                        </th>
-                                        <th>
-                                            Guruhi
-                                        </th>
-                                        <th>
-                                            Xonasi
-                                        </th>
-                                        <th>
-                                            Kelgan sanasi
-                                        </th>
-                                        <th>
-                                            To'lov qilgan oylari
+                                            Talabalar
                                         </th>
                                         <th>
                                             O'zgartirish
@@ -42,10 +30,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{#each student}}
+                                    {{#each rooms}}
                                     <tr>
                                         <td class="py-1">
-                                            <img src="{{image}}" alt="" />
+                                            {{title}}
                                         </td>
                                         <td>
                                             {{fullname}}
@@ -55,18 +43,6 @@
                                         </td>
                                         <td>
                                             {{facultet.title}}
-                                        </td>
-                                        <td>
-                                            {{group.title}}
-                                        </td>
-                                        <td>
-                                            {{room.title}}
-                                        </td>
-                                        <td>
-                                            {{date}}
-                                        </td>
-                                        <td>
-                                            {{amountMonth}} oyga
                                         </td>
                                         <td>
 

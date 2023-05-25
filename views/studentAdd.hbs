@@ -1,0 +1,85 @@
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-center my-4">Talaba Qo'shish</h2>
+                        <form class="col-6 m-auto" class="forms-sample" action="/create/student" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>Rasm yulash</label>
+                                <input type="file" name="image" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" class="form-control file-upload-info" disabled
+                                        placeholder="Rasm yuklash">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Rasm
+                                            yuklash</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Ism familiyasi*</label>
+                                <input required type="text" class="form-control" placeholder="Ism familiya kiriting"
+                                    name="fullname">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelectGender">Fakultetini kiriting*</label>
+                                <select required class="form-control" id="exampleSelectGender" name="facultet">
+                                    {{#each data.facultets}}
+                                    <option value="{{_id}}">{{title}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelectGender">Kursni kiriting*</label>
+                                <select required class="form-control" id="exampleSelectGender" name="cource">
+                                    {{#each data.courses}}
+                                    <option value="{{_id}}">{{title}}-kurs</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Guruhni kiriting*</label>
+                                <select required class="form-control" id="exampleSelectGender" name="group">
+                                    {{#each data.groups}}
+                                    <option value="{{_id}}">{{title}}-guruh</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Qavatni kiriting*</label>
+                                <select required class="form-control" id="exampleSelectGender" name="stage">
+                                    {{#each data.stages}}
+                                    <option value="{{_id}}">{{title}}-qavat</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Xonasini kiriting*</label>
+                                <select required class="form-control" id="exampleSelectGender" name="room">
+                                    {{#each data.rooms}}
+                                    <option value="{{_id}}">{{title}}-xona</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Kelgan sanasi*</label>
+                                <input required type="date" class="form-control" id="" placeholder="Sana"
+                                    value="2023-03-12" name="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Qancha oyga to'lov qilgan*</label>
+                                <input required type="number" class="form-control" id=""
+                                    placeholder="Qancha oyga to'lov qilgannini kiriting"
+                                    name="amountMonth">
+                            </div>
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

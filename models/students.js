@@ -12,19 +12,6 @@ const Students = new mongoose.Schema(
             required: false, 
             trim:false, 
         },
-        cource: {
-            type: "string", 
-            required: true, 
-            trim:true
-        },
-        group: {
-            type: "string", 
-            required: true
-        },
-        room: {
-            type: "string", 
-            required: true
-        },
         date: {
             type: "string", 
             required: true
@@ -32,6 +19,22 @@ const Students = new mongoose.Schema(
         amountMonth: {
             type: "string", 
             required: false
+        },
+        cource: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Courses'
+        },
+        group: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Groups'
+        },
+        facultet: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Facultet'
+        },
+        room: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Rooms'
         },
     },
     {
