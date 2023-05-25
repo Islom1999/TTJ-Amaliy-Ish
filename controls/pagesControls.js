@@ -6,7 +6,7 @@ const Groups = require('../models/groups')
 const Rooms = require('../models/rooms')
 const Stages = require('../models/stage')
 
-// Setting Pages and Events
+// Home Pages and Events
 const getHome = async(req, res) => {
     try {
         const student = await Student.find().lean()
@@ -70,6 +70,7 @@ const updateStudent = async(req, res) => {
     }
 }
 
+// Rooms Pages and Events
 const getRooms = async(req, res) => {
     try {
         // const rooms = await Student.find().lean().populate('Students')
@@ -82,6 +83,7 @@ const getRooms = async(req, res) => {
     }
 }
 
+// Admins Pages and Events
 const getAdmins = async(req, res) => {
     try {
         const student = await Student.find().lean()
@@ -94,39 +96,27 @@ const getAdmins = async(req, res) => {
     }
 }
 
-
-const getCreateStudent = async(req, res) => {
-    try {
-        const student = await Student.find().lean()
-        const courses = await Course.find().lean()
-        const facultets = await Facultets.find().lean()
-        const groups = await Groups.find().lean()
-        const rooms = await Rooms.find().lean()
-        const stages = await Stages.find().lean()
-        
-
-        res.render('studentAdd', {
-            student,
-            title: 'Talabalar qo\'shish sahifasi',
-            data: {courses, groups, rooms, stages, facultets}
-        })
-    } catch (error) {
-        console.log(error)
-    }
-}
-
 // Setting Pages and Events
 const getSetting = async(req, res) => {
     try {
         let stages = await Stages.find().lean()
-        const rooms = await Rooms.find().lean()
+        let rooms = await Rooms.find().lean().populate('stage')
 
         const facultets = await Facultets.find().lean()
         const courses = await Course.find().lean()
         const groups = await Groups.find().lean()
 
+        
+        rooms.forEach(elem => {
+            if(Boolean(elem.students)){
+                elem.studentNumbers = elem.students.length
+            }else{
+                elem.studentNumbers =  0
+            }
+        })
+
         stages.forEach(elem => {
-            if(elem.rooms){
+            if(Boolean(elem.rooms)){
                 elem.roomNumbers = elem.rooms.length
             }else{
                 elem.roomNumbers =  0
@@ -167,6 +157,110 @@ const deleteStage = async(req, res) => {
     }
 }
 
+const createRooms = async(req, res) => {
+    try {        
+        await Rooms.create({... req.body})
+
+        res.redirect('/setting')
+    } catch (error) {
+        console.log(error)
+    }
+}
+const updateRooms = async(req, res) => {
+    try {
+        await Rooms.findByIdAndUpdate(req.params.id, {... req.body})
+        res.redirect('/setting')
+    } catch (error) {
+        console.log(error)
+    }
+}
+const deleteRooms = async(req, res) => {
+    try {
+        await Rooms.findByIdAndDelete(req.params.id)
+        res.redirect('/setting')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const createFacultet = async(req, res) => {
+    try {        
+        await Facultets.create({... req.body})
+
+        res.redirect('/setting')
+    } catch (error) {
+        console.log(error)
+    }
+}
+const updateFacultet = async(req, res) => {
+    try {
+        await Facultets.findByIdAndUpdate(req.params.id, {... req.body})
+        res.redirect('/setting')
+    } catch (error) {
+        console.log(error)
+    }
+}
+const deleteFacultet = async(req, res) => {
+    try {
+        await Facultets.findByIdAndDelete(req.params.id)
+        res.redirect('/setting')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const createCourse = async(req, res) => {
+    try {        
+        await Course.create({... req.body})
+
+        res.redirect('/setting')
+    } catch (error) {
+        console.log(error)
+    }
+}
+const updateCourse = async(req, res) => {
+    try {
+        await Course.findByIdAndUpdate(req.params.id, {... req.body})
+        res.redirect('/setting')
+    } catch (error) {
+        console.log(error)
+    }
+}
+const deleteCourse = async(req, res) => {
+    try {
+        await Course.findByIdAndDelete(req.params.id)
+        res.redirect('/setting')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const createGroup = async(req, res) => {
+    try {        
+        await Groups.create({... req.body})
+
+        res.redirect('/setting')
+    } catch (error) {
+        console.log(error)
+    }
+}
+const updateGroup = async(req, res) => {
+    try {
+        await Groups.findByIdAndUpdate(req.params.id, {... req.body})
+        res.redirect('/setting')
+    } catch (error) {
+        console.log(error)
+    }
+}
+const deleteGroup = async(req, res) => {
+    try {
+        await Groups.findByIdAndDelete(req.params.id)
+        res.redirect('/setting')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 module.exports = {
     getHome,
@@ -175,9 +269,26 @@ module.exports = {
     updateStudent,
     getRooms,
     getAdmins,
-    getCreateStudent,
+
     getSetting,
+
     createStage,
     updateStage,
-    deleteStage
+    deleteStage,
+
+    createRooms, 
+    updateRooms,
+    deleteRooms,
+
+    createFacultet,
+    updateFacultet,
+    deleteFacultet,
+
+    createCourse,
+    updateCourse,
+    deleteCourse,
+
+    createGroup,
+    updateGroup,
+    deleteGroup,
 }

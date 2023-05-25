@@ -31,7 +31,7 @@ server.use(session({
     secret: process.env.SECTION_SECRET,
     resave: false, 
     saveUninitialized: false,
-    store
+    store  
 }))
 
 // STATIC FILES configuration
@@ -42,7 +42,7 @@ server.use('/', require('./routers/pagesRouters'))
 
 // SERVER LISTENING configuration
 const PORT = process.env.PORT || 5000
-server.listen(PORT, (err) => {
+server.listen(PORT, (err) => { 
     if (err) {
         console.log(err)
     } else {

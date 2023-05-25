@@ -3,8 +3,24 @@
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
+                    <h1 class="text-center my-4 text-primary">Qavatlarni Sozlamalari</h1>
                     <div class="card-body">
-                        <h2 class="text-center my-4">TATU TTJ dagi qavatlar</h2>
+                        <h3 class="text-center my-4">Qavat Qo'shish</h3>
+                        <form class="col-6 m-auto" class="forms-sample" action="/create/stage" method="post">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Qavat</label>
+                                    <input required type="number" class="form-control" placeholder="Qavat kirit"
+                                        name="title" value="{{title}}">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Saqlash</button>
+                                </div>
+                        </form>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <h3 class="text-center my-4">TATU TTJ dagi qavatlar</h3>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
@@ -85,21 +101,416 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 grid-margin stretch-card">
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
+                    <h1 class="text-center my-4 text-primary">Xonalarni Sozlamalari</h1>
                     <div class="card-body">
-                        <h2 class="text-center my-4">Qavat Qo'shish</h2>
-                        <form class="col-6 m-auto" class="forms-sample" action="/create/stage" method="post">
+                        <h3 class="text-center my-4">Xona Qo'shish</h3>
+                        <form class="col-6 m-auto" class="forms-sample" action="/create/rooms" method="post">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label>Qavat</label>
+                                    <label>Xona</label>
                                     <input required type="number" class="form-control" placeholder="Qavat kirit"
                                         name="title" value="{{title}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Qavatni kiriting*</label>
+                                    <select required class="form-control" id="exampleSelectGender" name="stage">
+                                        {{#each data.stages}}
+                                        <option value="{{_id}}">{{title}}-qavat</option>
+                                        {{/each}}
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Saqlash</button>
                                 </div>
                         </form>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <h3 class="text-center my-4">TATU TTJ dagi qavatlar</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Xonalar
+                                        </th>
+                                        <th>
+                                            Qavat
+                                        </th>
+                                        <th>
+                                            Necha kishi borlogi
+                                        </th>
+                                        <th>
+                                            O'zgartirish
+                                        </th>
+                                        <th>
+                                            O'chirish
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each data.rooms}}
+                                    <tr>
+                                        <td class="py-1">
+                                            {{title}} - xona
+                                        </td>
+                                        <td>
+                                            {{stage.title}} - qavat
+                                        </td>
+                                        <td>
+                                            {{studentNumbers}} ta kishi bor
+                                        </td>
+                                        <td>
+
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-inverse-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modal{{_id}}">
+                                                O'zgartirish
+                                            </button>
+
+                                        </td>
+                                        <td>
+                                            <form action="/delete/rooms/{{_id}}" method="POST">
+                                                <button class="btn btn-inverse-danger">O'chirish</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal{{_id}}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+                                                        Talaba malumotlarini o'zgartirish</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <form class="col-6 m-auto" class="forms-sample"
+                                                    action="/update/rooms/{{_id}}" method="post">
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label>Xona</label>
+                                                            <input required type="number" class="form-control"
+                                                                placeholder="Qavat kirit" name="title"
+                                                                value="{{title}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="">Qavatni kiriting*</label>
+                                                            <select required class="form-control"
+                                                                id="exampleSelectGender" name="stage">
+                                                                {{#each ../ data.stages}}
+                                                                <option value="{{_id}}">{{title}}-qavat</option>
+                                                                {{/each}}
+                                                            </select>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Qaytish</button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Saqlash</button>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <h1 class="text-center my-4 text-primary">Fakultet Sozlamalari</h1>
+                    <div class="card-body">
+                        <h3 class="text-center my-4">Fakultet Qo'shish</h3>
+                        <form class="col-6 m-auto" class="forms-sample" action="/create/facultet" method="post">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Fakultet</label>
+                                    <input required type="text" class="form-control" placeholder="Qavat kirit"
+                                        name="title">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Saqlash</button>
+                                </div>
+                        </form>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <h3 class="text-center my-4">TATU dagi Fakultetlar</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Fakultet
+                                        </th>
+                                        <th>
+                                            O'zgartirish
+                                        </th>
+                                        <th>
+                                            O'chirish
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each data.facultets}}
+                                    <tr>
+                                        <td class="py-1">
+                                            {{title}}
+                                        </td>
+                                        <td>
+
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-inverse-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modal{{_id}}">
+                                                O'zgartirish
+                                            </button>
+
+                                        </td>
+                                        <td>
+                                            <form action="/delete/facultet/{{_id}}" method="POST">
+                                                <button class="btn btn-inverse-danger">O'chirish</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal{{_id}}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+                                                        Talaba malumotlarini o'zgartirish</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <form class="col-6 m-auto" class="forms-sample"
+                                                    action="/update/facultet/{{_id}}" method="post">
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label>Qavat</label>
+                                                            <input required type="text" class="form-control"
+                                                                placeholder="Qavat kirit" name="title"
+                                                                value="{{title}}">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Qaytish</button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Saqlash</button>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <h1 class="text-center my-4 text-primary">Kurslar Sozlamalari</h1>
+                    <div class="card-body">
+                        <h3 class="text-center my-4">Kurs Qo'shish</h3>
+                        <form class="col-6 m-auto" class="forms-sample" action="/create/course" method="post">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Kurs</label>
+                                    <input required type="number" class="form-control" placeholder="Qavat kirit"
+                                        name="title">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Saqlash</button>
+                                </div>
+                        </form>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <h3 class="text-center my-4">TATU dagi Kurslar</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Kurslar
+                                        </th>
+                                        <th>
+                                            O'zgartirish
+                                        </th>
+                                        <th>
+                                            O'chirish
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each data.courses}}
+                                    <tr>
+                                        <td class="py-1">
+                                            {{title}} - kurs
+                                        </td>
+                                        <td>
+
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-inverse-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modal{{_id}}">
+                                                O'zgartirish
+                                            </button>
+
+                                        </td>
+                                        <td>
+                                            <form action="/delete/course/{{_id}}" method="POST">
+                                                <button class="btn btn-inverse-danger">O'chirish</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal{{_id}}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+                                                        Talaba malumotlarini o'zgartirish</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <form class="col-6 m-auto" class="forms-sample"
+                                                    action="/update/course/{{_id}}" method="post">
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label>Kurslar</label>
+                                                            <input required type="number" class="form-control"
+                                                                placeholder="Qavat kirit" name="title"
+                                                                value="{{title}}">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Qaytish</button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Saqlash</button>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <h1 class="text-center my-4 text-primary">Guruh Sozlamalari</h1>
+                    <div class="card-body">
+                        <h3 class="text-center my-4">Guruh Qo'shish</h3>
+                        <form class="col-6 m-auto" class="forms-sample" action="/create/group" method="post">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Guruh</label>
+                                    <input required type="number" class="form-control" placeholder="Guruh kirit"
+                                        name="title">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Saqlash</button>
+                                </div>
+                        </form>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <h3 class="text-center my-4">TATU dagi Kurslar</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Guruhlar
+                                        </th>
+                                        <th>
+                                            O'zgartirish
+                                        </th>
+                                        <th>
+                                            O'chirish
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each data.groups}}
+                                    <tr>
+                                        <td class="py-1">
+                                            {{title}} - guruh
+                                        </td>
+                                        <td>
+
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-inverse-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modal{{_id}}">
+                                                O'zgartirish
+                                            </button>
+
+                                        </td>
+                                        <td>
+                                            <form action="/delete/group/{{_id}}" method="POST">
+                                                <button class="btn btn-inverse-danger">O'chirish</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal{{_id}}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+                                                        Guruh malumotlarini o'zgartirish</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <form class="col-6 m-auto" class="forms-sample"
+                                                    action="/update/group/{{_id}}" method="post">
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label>Guruh</label>
+                                                            <input required type="number" class="form-control"
+                                                                placeholder="Qavat kirit" name="title"
+                                                                value="{{title}}">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Qaytish</button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Saqlash</button>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
