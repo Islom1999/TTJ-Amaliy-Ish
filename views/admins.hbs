@@ -1,0 +1,134 @@
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <h1 class="text-center my-4 text-primary">Adminlar Sozlamalari</h1>
+                    <div class="card-body">
+                        <h3 class="text-center my-4">Admin Qo'shish</h3>
+                        <form class="col-6 m-auto" class="forms-sample" action="/create/rooms" method="post">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Xona</label>
+                                    <input required type="number" class="form-control" placeholder="Qavat kirit"
+                                        name="title" value="{{title}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Qavatni kiriting*</label>
+                                    <select required class="form-control" id="exampleSelectGender" name="stage">
+                                        {{#each data.stages}}
+                                        <option value="{{_id}}">{{title}}-qavat</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Saqlash</button>
+                                </div>
+                        </form>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <h3 class="text-center my-4">TATU TTJ dagi qavatlar</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Ism Familiya
+                                        </th>
+                                        <th>
+                                            Username
+                                        </th>
+                                        <th>
+                                            Password
+                                        </th>
+                                        <th>
+                                            Phone
+                                        </th>
+                                        <th>
+                                            O'zgartirish
+                                        </th>
+                                        <th>
+                                            O'chirish
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each admins}}
+                                    <tr>
+                                        <td class="py-1">
+                                            {{fullname}}
+                                        </td>
+                                        <td>
+                                            {{username}}
+                                        </td>
+                                        <td>
+                                            {{password}}
+                                        </td>
+                                        <td>
+                                            <a href="tel:{{phone}}">{{phone}}</a>
+                                        </td>
+                                        <td>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-inverse-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modal{{_id}}">
+                                                O'zgartirish
+                                            </button>
+
+                                        </td>
+                                        <td>
+                                            <form action="/delete/rooms/{{_id}}" method="POST">
+                                                <button class="btn btn-inverse-danger">O'chirish</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal{{_id}}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+                                                        Talaba malumotlarini o'zgartirish</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <form class="col-6 m-auto" class="forms-sample"
+                                                    action="/update/rooms/{{_id}}" method="post">
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label>Xona</label>
+                                                            <input required type="number" class="form-control"
+                                                                placeholder="Qavat kirit" name="title"
+                                                                value="{{title}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="">Qavatni kiriting*</label>
+                                                            <select required class="form-control"
+                                                                id="exampleSelectGender" name="stage">
+                                                                {{#each ../ data.stages}}
+                                                                <option value="{{_id}}">{{title}}-qavat</option>
+                                                                {{/each}}
+                                                            </select>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Qaytish</button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Saqlash</button>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

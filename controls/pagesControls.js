@@ -5,6 +5,7 @@ const Facultets = require('../models/facultet')
 const Groups = require('../models/groups')
 const Rooms = require('../models/rooms')
 const Stages = require('../models/stage')
+const Admins = require('../models/admin')
 
 
 // Home Pages and Events
@@ -104,9 +105,9 @@ const getRooms = async(req, res) => {
 // Admins Pages and Events
 const getAdmins = async(req, res) => {
     try {
-        const student = await Student.find().lean()
+        const admins = await Admins.find().lean()
         res.render('admins', {
-            student,
+            admins,
             title: 'Adminlar sahifasi'
         })
     } catch (error) {
