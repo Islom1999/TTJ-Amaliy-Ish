@@ -32,13 +32,14 @@ server.use(session({
     resave: false, 
     saveUninitialized: false,
     store  
-}))
+})) 
 
 // STATIC FILES configuration
 server.use(express.static( path.join(__dirname, 'public') ))
 
 // Router configuration
-server.use('/', require('./routers/pagesRouters'))
+server.use('/admin',require('./routers/authRouters'))
+server.use('/', require('./middleware/auth').protuctedAdmin, require('./routers/pagesRouters'))
 
 // SERVER LISTENING configuration
 const PORT = process.env.PORT || 5000

@@ -7,6 +7,10 @@ const Rooms = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    status:{
+      type: "string",
+      default: 'bosh',
+    },
     students: [
       {
         type: mongoose.Schema.Types.ObjectId,

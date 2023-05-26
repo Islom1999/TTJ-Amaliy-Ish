@@ -26,6 +26,7 @@ const {
     deleteGroup,
 } = require('../controls/pagesControls')
 
+
 const router = Router()
 
 router.get('/', getHome)

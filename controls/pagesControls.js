@@ -6,6 +6,7 @@ const Groups = require('../models/groups')
 const Rooms = require('../models/rooms')
 const Stages = require('../models/stage')
 
+
 // Home Pages and Events
 const getHome = async(req, res) => {
     try {
@@ -73,9 +74,26 @@ const updateStudent = async(req, res) => {
 // Rooms Pages and Events
 const getRooms = async(req, res) => {
     try {
-        // const rooms = await Student.find().lean().populate('Students')
+        const rooms = await Rooms.find().lean()
+            .populate('students')
+            .populate('stage')
+
+        const roomsBosh = rooms.filter(room => room.status === false)
+
+        const roomsBand = rooms.filter(room => room.status === true)
+
+        roomsBosh.forEach(elem => {
+            if(Boolean(elem.students)){
+                elem.studentNumbers = elem.students.length
+            }else{
+                elem.studentNumbers =  0
+            }
+        })
+
         res.render('rooms', {
-            // rooms,
+            rooms,
+            roomsBosh,
+            roomsBand,
             title: 'Xonalar sahifasi'
         })
     } catch (error) {
@@ -159,7 +177,7 @@ const deleteStage = async(req, res) => {
 
 const createRooms = async(req, res) => {
     try {        
-        await Rooms.create({... req.body})
+        await Rooms.create({... req.body, students: []})
 
         res.redirect('/setting')
     } catch (error) {
@@ -263,6 +281,7 @@ const deleteGroup = async(req, res) => {
 
 
 module.exports = {
+    
     getHome,
     createStudent,
     deleteStudent,

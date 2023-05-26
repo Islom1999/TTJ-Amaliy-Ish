@@ -4,47 +4,41 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="text-center my-4">TATU TTJ dagi o'quvchilar ro'yhati</h2>
+                        <h3 class="text-center my-4 text-primary">TATU TTJ dagi bo'sh xonalar</h3>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>
-                                            Xona
+                                            Xonalar
                                         </th>
                                         <th>
                                             Qavat
                                         </th>
                                         <th>
-                                            Status
+                                            Necha kishi borlogi
                                         </th>
-                                        <th>
-                                            Talabalar
-                                        </th>
-                                        <th>
+                                        {{!-- <th>
                                             O'zgartirish
                                         </th>
                                         <th>
                                             O'chirish
-                                        </th>
+                                        </th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{#each rooms}}
+                                    {{#each roomsBosh}}
                                     <tr>
                                         <td class="py-1">
-                                            {{title}}
+                                            {{title}} - xona
                                         </td>
                                         <td>
-                                            {{fullname}}
+                                            {{stage.title}} - qavat
                                         </td>
                                         <td>
-                                            {{cource.title}}
+                                            {{studentNumbers}} ta kishi bor
                                         </td>
-                                        <td>
-                                            {{facultet.title}}
-                                        </td>
-                                        <td>
+                                        {{!-- <td>
 
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-inverse-primary" data-bs-toggle="modal"
@@ -54,14 +48,14 @@
 
                                         </td>
                                         <td>
-                                            <form action="/delete/student/{{_id}}" method="POST">
+                                            <form action="/delete/rooms/{{_id}}" method="POST">
                                                 <button class="btn btn-inverse-danger">O'chirish</button>
                                             </form>
-                                        </td>
+                                        </td> --}}
                                     </tr>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="modal{{_id}}" tabindex="-1"
+                                    {{!-- <div class="modal fade" id="modal{{_id}}" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -72,54 +66,13 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <form class="col-6 m-auto" class="forms-sample"
-                                                    action="/update/student/{{_id}}" method="post"
-                                                    enctype="multipart/form-data">
+                                                    action="/update/rooms/{{_id}}" method="post">
                                                     <div class="modal-body">
                                                         <div class="form-group">
-                                                            <label>Rasm yulash</label>
-                                                            <input type="file" name="image" class="file-upload-default">
-                                                            <div class="input-group col-xs-12">
-                                                                <input type="text" class="form-control file-upload-info"
-                                                                    disabled placeholder="Rasm yuklash">
-                                                                <span class="input-group-append">
-                                                                    <button class="file-upload-browse btn btn-primary"
-                                                                        type="button">Rasm
-                                                                        yuklash</button>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Ism familiyasi*</label>
-                                                            <input required type="text" class="form-control"
-                                                                placeholder="Ism familiya kiriting" name="fullname" value="{{fullname}}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleSelectGender">Fakultetini
-                                                                kiriting*</label>
-                                                            <select required class="form-control"
-                                                                id="exampleSelectGender" name="facultet">
-                                                                {{#each ../ data.facultets}}
-                                                                <option value="{{_id}}">{{title}}</option>
-                                                                {{/each}}
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleSelectGender">Kursni kiriting*</label>
-                                                            <select required class="form-control"
-                                                                id="exampleSelectGender" name="cource">
-                                                                {{#each ../ data.courses}}
-                                                                <option value="{{_id}}">{{title}}-kurs</option>
-                                                                {{/each}}
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="">Guruhni kiriting*</label>
-                                                            <select required class="form-control"
-                                                                id="exampleSelectGender" name="group">
-                                                                {{#each ../ data.groups}}
-                                                                <option value="{{_id}}">{{title}}-guruh</option>
-                                                                {{/each}}
-                                                            </select>
+                                                            <label>Xona</label>
+                                                            <input required type="number" class="form-control"
+                                                                placeholder="Qavat kirit" name="title"
+                                                                value="{{title}}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="">Qavatni kiriting*</label>
@@ -130,29 +83,6 @@
                                                                 {{/each}}
                                                             </select>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label for="">Xonasini kiriting*</label>
-                                                            <select required class="form-control"
-                                                                id="exampleSelectGender" name="room">
-                                                                {{#each ../ data.rooms}}
-                                                                <option value="{{_id}}">{{title}}-xona</option>
-                                                                {{/each}}
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="">Kelgan sanasi*</label>
-                                                            <input required type="date" class="form-control" id=""
-                                                                placeholder="Sana" value="2023-03-12" name="date" value="{{date}}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="">Qancha oyga to'lov qilgan*</label>
-                                                            <input required type="number" class="form-control" id=""
-                                                                placeholder="Qancha oyga to'lov qilgannini kiriting"
-                                                                name="amountMonth" value="{{amountMonth}}">
-                                                        </div>
-                                                        <button type="submit"
-                                                            class="btn btn-primary mr-2">Submit</button>
-                                                        <button class="btn btn-light">Cancel</button>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Qaytish</button>
@@ -162,7 +92,112 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="text-center my-4 text-primary">TATU TTJ dagi band xonalar</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Xonalar
+                                        </th>
+                                        <th>
+                                            Qavat
+                                        </th>
+                                        <th>
+                                            Xonadagi talabalar
+                                        </th>
+                                        {{!-- <th>
+                                            O'zgartirish
+                                        </th>
+                                        <th>
+                                            O'chirish
+                                        </th> --}}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each roomsBand}}
+                                    <tr>
+                                        <td class="py-1">
+                                            {{title}} - xona
+                                        </td>
+                                        <td>
+                                            {{stage.title}} - qavat
+                                        </td>
+                                        <td>
+                                            <ol>
+                                            {{#each students}}
+                                                <li>{{fullname}}</li>
+                                            {{/each}}
+                                            </ol>
+                                        </td>
+                                        {{!-- <td>
+
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-inverse-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modal{{_id}}">
+                                                O'zgartirish
+                                            </button>
+
+                                        </td>
+                                        <td>
+                                            <form action="/delete/rooms/{{_id}}" method="POST">
+                                                <button class="btn btn-inverse-danger">O'chirish</button>
+                                            </form>
+                                        </td> --}}
+                                    </tr>
+
+                                    <!-- Modal -->
+                                    {{!-- <div class="modal fade" id="modal{{_id}}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+                                                        Talaba malumotlarini o'zgartirish</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <form class="col-6 m-auto" class="forms-sample"
+                                                    action="/update/rooms/{{_id}}" method="post">
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label>Xona</label>
+                                                            <input required type="number" class="form-control"
+                                                                placeholder="Qavat kirit" name="title"
+                                                                value="{{title}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="">Qavatni kiriting*</label>
+                                                            <select required class="form-control"
+                                                                id="exampleSelectGender" name="stage">
+                                                                {{#each ../ data.stages}}
+                                                                <option value="{{_id}}">{{title}}-qavat</option>
+                                                                {{/each}}
+                                                            </select>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Qaytish</button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Saqlash</button>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div> --}}
                                     {{/each}}
                                 </tbody>
                             </table>
