@@ -4,27 +4,58 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <h1 class="text-center my-4 text-primary">Adminlar Sozlamalari</h1>
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <h3 class="text-center my-4">Admin Qo'shish</h3>
-                        <form class="col-6 m-auto" class="forms-sample" action="/create/rooms" method="post">
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label>Xona</label>
-                                    <input required type="number" class="form-control" placeholder="Qavat kirit"
-                                        name="title" value="{{title}}">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#modal-create">
+                            Qo'shish
+                        </button>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+                                        Admin Qo'shish</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
-                                <div class="form-group">
-                                    <label for="">Qavatni kiriting*</label>
-                                    <select required class="form-control" id="exampleSelectGender" name="stage">
-                                        {{#each data.stages}}
-                                        <option value="{{_id}}">{{title}}-qavat</option>
-                                        {{/each}}
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Saqlash</button>
-                                </div>
-                        </form>
+                                <form class="col-12 m-auto" class="forms-sample" action="/create/admin/"
+                                    method="post">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Ism Familiya</label>
+                                            <input required type="text" class="form-control"
+                                                placeholder="Qavat kirit" name="fullname" value="{{fullname}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Username</label>
+                                            <input required type="text" class="form-control"
+                                                placeholder="Qavat kirit" name="username" value="{{username}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <input required type="password" class="form-control"
+                                                placeholder="Qavat kirit" name="password" value="{{password}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tell raqami</label>
+                                            <input required type="text" class="form-control"
+                                                placeholder="Qavat kirit" name="phone" value="{{phone}}">
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Qaytish</button>
+                                        <button type="submit" class="btn btn-primary">Saqlash</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <hr>
                     <div class="card-body">
@@ -77,7 +108,7 @@
 
                                         </td>
                                         <td>
-                                            <form action="/delete/rooms/{{_id}}" method="POST">
+                                            <form action="/delete/admin/{{_id}}" method="POST">
                                                 <button class="btn btn-inverse-danger">O'chirish</button>
                                             </form>
                                         </td>
@@ -95,29 +126,39 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <form class="col-6 m-auto" class="forms-sample"
-                                                    action="/update/rooms/{{_id}}" method="post">
+                                                    action="/update/admin/{{_id}}" method="post">
                                                     <div class="modal-body">
                                                         <div class="form-group">
-                                                            <label>Xona</label>
-                                                            <input required type="number" class="form-control"
-                                                                placeholder="Qavat kirit" name="title"
-                                                                value="{{title}}">
+                                                            <label>Ism Familiya</label>
+                                                            <input required type="text" class="form-control"
+                                                                placeholder="Qavat kirit" name="fullname"
+                                                                value="{{fullname}}">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="">Qavatni kiriting*</label>
-                                                            <select required class="form-control"
-                                                                id="exampleSelectGender" name="stage">
-                                                                {{#each ../ data.stages}}
-                                                                <option value="{{_id}}">{{title}}-qavat</option>
-                                                                {{/each}}
-                                                            </select>
+                                                            <label>Username</label>
+                                                            <input required type="text" class="form-control"
+                                                                placeholder="Qavat kirit" name="username"
+                                                                value="{{username}}">
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Qaytish</button>
-                                                            <button type="submit"
-                                                                class="btn btn-primary">Saqlash</button>
+                                                        <div class="form-group">
+                                                            <label>Password</label>
+                                                            <input required type="password" class="form-control"
+                                                                placeholder="Qavat kirit" name="password"
+                                                                value="{{password}}">
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label>Tell raqami</label>
+                                                            <input required type="text" class="form-control"
+                                                                placeholder="Qavat kirit" name="phone"
+                                                                value="{{phone}}">
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Qaytish</button>
+                                                        <button type="submit" class="btn btn-primary">Saqlash</button>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>

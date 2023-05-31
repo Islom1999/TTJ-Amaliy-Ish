@@ -7,6 +7,47 @@ const Rooms = require('../models/rooms')
 const Stages = require('../models/stage')
 const Admins = require('../models/admin')
 
+// Home Pages and Events
+const getDashboard = async(req, res) => {
+    try {
+        const student = await Student.find().lean()
+            .populate('cource')
+            .populate("group")
+            .populate("facultet")
+            .populate("room")
+
+        const rooms = await Rooms.find().lean()
+            .populate('students')
+            .populate('stage')
+
+        const roomsBosh = rooms.filter(room => room.status === false)
+
+        const roomsBand = rooms.filter(room => room.status === true)
+
+        roomsBosh.forEach(elem => {
+            if(Boolean(elem.students)){
+                elem.studentNumbers = elem.students.length
+            }else{
+                elem.studentNumbers =  0
+            }
+        })
+
+
+        res.render('dashboard', {
+            student,
+            title: 'Asosiy sahifasi',
+            roomsBosh,
+            roomsBand,
+            numbers: {
+                studentNumbers: student.length,
+                boshNumbers: roomsBosh.length,
+                bandNumbers: roomsBand.length,
+            }
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 // Home Pages and Events
 const getHome = async(req, res) => {
@@ -110,6 +151,31 @@ const getAdmins = async(req, res) => {
             admins,
             title: 'Adminlar sahifasi'
         })
+    } catch (error) {
+        console.log(error)
+    }
+}
+const createAdmin = async(req, res) => {
+    try {        
+        await Admins.create({... req.body})
+
+        res.redirect('/admins')
+    } catch (error) {
+        console.log(error)
+    }
+}
+const updateAdmin = async(req, res) => {
+    try {
+        await Admins.findByIdAndUpdate(req.params.id, {... req.body})
+        res.redirect('/admins')
+    } catch (error) {
+        console.log(error)
+    }
+}
+const deleteAdmin = async(req, res) => {
+    try {
+        await Admins.findByIdAndDelete(req.params.id)
+        res.redirect('/admins')
     } catch (error) {
         console.log(error)
     }
@@ -282,7 +348,7 @@ const deleteGroup = async(req, res) => {
 
 
 module.exports = {
-    
+    getDashboard,
     getHome,
     createStudent,
     deleteStudent,
@@ -311,4 +377,8 @@ module.exports = {
     createGroup,
     updateGroup,
     deleteGroup,
+
+    createAdmin,
+    updateAdmin,
+    deleteAdmin,
 }

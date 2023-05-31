@@ -1,5 +1,15 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
+    <li class="nav-item sidebar-category">
+          <p>Dashboard</p>
+          <span></span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard">
+            <i class="mdi mdi-view-quilt menu-icon"></i>
+            <span class="menu-title">Asosiy sahifa</span>
+          </a>
+        </li>
 
     <li class="nav-item sidebar-category">
       <p>Pages</p>
@@ -19,7 +29,7 @@
     </li>
     <li class="nav-item">
       <a href="/setting" class="nav-link" href="#">
-        <i class="mdi mdi-account menu-icon"></i>
+        <i class="mdi mdi-settings menu-icon"></i>
         <span class="menu-title">Sozlash</span>
       </a>
     </li>
@@ -30,8 +40,8 @@
       </a>
     </li>
     <li class="nav-item">
-      <form action="/admin/logout" method="post">
-        <button class="btn btn-danger nav-link ml-4 mt-3">
+      <form action="/admin/logout" method="post" class="nav-link">
+        <button class="btn bg-danger btn-sm menu-title ">
           <i class="mdi mdi-logout text-light"></i>
           Logout
         </button>

@@ -2,6 +2,7 @@ const {Router} = require('express')
 const upload = require('../utils/fileUpload')
 
 const {
+    getDashboard,
     getHome,
     createStudent,
     deleteStudent,
@@ -24,10 +25,15 @@ const {
     createGroup,
     updateGroup,
     deleteGroup,
+    createAdmin,
+    updateAdmin,
+    deleteAdmin,
 } = require('../controls/pagesControls')
 
 
 const router = Router()
+
+router.get('/dashboard', getDashboard)
 
 router.get('/', getHome)
 router.post('/delete/student/:id', deleteStudent)
@@ -35,7 +41,11 @@ router.post('/update/student/:id', upload.single('image'), updateStudent)
 router.post('/create/student', upload.single('image'), createStudent)
 
 router.get('/rooms', getRooms)
+
 router.get('/admins', getAdmins)
+router.post('/create/admin', createAdmin)
+router.post('/update/admin/:id', updateAdmin)
+router.post('/delete/admin/:id', deleteAdmin)
 
 // Settings routers start
 router.get('/setting', getSetting)

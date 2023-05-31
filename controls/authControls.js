@@ -23,7 +23,7 @@ const adminLogin = async(req, res) => {
             if(admin.password == password){
                 req.session.isAdmin = admin
                 req.session.isLogin = true
-                return res.redirect('/')
+                return res.redirect('/dashboard')
             }else{
                 return res.redirect('/login')
             }

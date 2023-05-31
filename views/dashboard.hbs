@@ -1,0 +1,203 @@
+<div class="content-wrapper">
+    <div class="row">
+        <div class="row">
+            <div class="col-md-4 grid-margin stretch-card">
+                <div class="card bg-facebook d-flex align-items-center">
+                    <div class="card-body py-5">
+                        <div
+                            class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
+                            <i class="mdi mdi-account-multiple text-white icon-lg"></i>
+                            <div class="ml-3 ml-md-0 ml-xl-3">
+                                <h5 class="text-white font-weight-bold"><span class="h1 mr-3">{{numbers.studentNumbers}}</span> ta talaba</h5>
+                                <p class="mt-2 text-white card-text">Talabalar turar joyida mavjud</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 grid-margin stretch-card">
+                <div class="card bg-google d-flex align-items-center">
+                    <div class="card-body py-5">
+                        <div
+                            class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
+                            <i class="mdi mdi-hotel text-white icon-lg"></i>
+                            <div class="ml-3 ml-md-0 ml-xl-3">
+                                <h5 class="text-white font-weight-bold"><span class="h1 mr-3">{{numbers.bandNumbers}}</span> ta band xonalar
+                                </h5>
+                                <p class="mt-2 text-white card-text">Talabalar turar joyida mavjud</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 grid-margin stretch-card">
+                <div class="card bg-twitter d-flex align-items-center">
+                    <div class="card-body py-5">
+                        <div
+                            class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
+                            <i class="mdi mdi-home-variant text-white icon-lg"></i>
+                            <div class="ml-3 ml-md-0 ml-xl-3">
+                                <h5 class="text-white font-weight-bold"><span class="h1 mr-3">{{numbers.boshNumbers}}</span> ta bo'sh xonalar
+                                </h5>
+                                <p class="mt-2 text-white card-text">Talabalat turar joyida mavjud</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center my-4">TATU TTJ dagi o'quvchilar ro'yhati</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Rasmi
+                                    </th>
+                                    <th>
+                                        Ism Familiyasi
+                                    </th>
+                                    <th>
+                                        Kursi
+                                    </th>
+                                    <th>
+                                        Fakulteti
+                                    </th>
+                                    <th>
+                                        Guruhi
+                                    </th>
+                                    <th>
+                                        Xonasi
+                                    </th>
+                                    <th>
+                                        Kelgan sanasi
+                                    </th>
+                                    <th>
+                                        To'lov qilgan oylari
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each student}}
+                                <tr>
+                                    <td class="py-1">
+                                        <img src="{{image}}" alt="" />
+                                    </td>
+                                    <td>
+                                        {{fullname}}
+                                    </td>
+                                    <td>
+                                        {{cource.title}}
+                                    </td>
+                                    <td>
+                                        {{facultet.title}}
+                                    </td>
+                                    <td>
+                                        {{group.title}}
+                                    </td>
+                                    <td>
+                                        {{room.title}}
+                                    </td>
+                                    <td>
+                                        {{date}}
+                                    </td>
+                                    <td>
+                                        {{amountMonth}} oyga
+                                    </td>
+                                    {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="text-center my-4 text-primary">TATU TTJ dagi bo'sh xonalar</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Xonalar
+                                        </th>
+                                        <th>
+                                            Qavat
+                                        </th>
+                                        <th>
+                                            Necha kishi borlogi
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each roomsBosh}}
+                                    <tr>
+                                        <td class="py-1">
+                                            {{title}} - xona
+                                        </td>
+                                        <td>
+                                            {{stage.title}} - qavat
+                                        </td>
+                                        <td>
+                                            {{studentNumbers}} ta kishi bor
+                                        </td>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="text-center my-4 text-primary">TATU TTJ dagi band xonalar</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Xonalar
+                                        </th>
+                                        <th>
+                                            Qavat
+                                        </th>
+                                        <th>
+                                            Xonadagi talabalar
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each roomsBand}}
+                                    <tr>
+                                        <td class="py-1">
+                                            {{title}} - xona
+                                        </td>
+                                        <td>
+                                            {{stage.title}} - qavat
+                                        </td>
+                                        <td>
+                                            <ol>
+                                                {{#each students}}
+                                                <li>{{fullname}}</li>
+                                                {{/each}}
+                                            </ol>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
